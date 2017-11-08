@@ -111,6 +111,8 @@
                 $comment.on('click.comment', '[data-action="reply"]', eventParams, reply);
                 $comment.on('click.comment', '[data-action="cancel-reply"]', eventParams, cancelReply);
                 $comment.on('click.comment', '[data-action="delete"]', eventParams, deleteComment);
+                $comment.on('click.comment', '[data-action="collapse"]', eventParams, collapse);
+                $comment.on('click.comment', '[data-action="expand"]', eventParams, expand);
             });
         },
         data: function () {
@@ -235,6 +237,36 @@
         });
 
         $commentForm.trigger(events.afterDelete);
+
+        return false;
+    }
+
+    /**
+     * Collapse comments
+     */
+    function collapse() {
+        var $rootComment = $(this).closest('.comment');
+        var $nextElement = $rootComment.next();
+        var hasChildren = $nextElement.hasClass('children');
+
+        if(hasChildren)
+            $nextElement.hide();
+        $rootComment.addClass('collapsed');
+
+        return false;
+    }
+
+    /**
+     * Expand comments
+     */
+    function expand() {
+        var $rootComment = $(this).closest('.comment');
+        var $nextElement = $rootComment.next();
+        var hasChildren = $nextElement.hasClass('children');
+
+        if(hasChildren)
+            $nextElement.show();
+        $rootComment.removeClass('collapsed');
 
         return false;
     }

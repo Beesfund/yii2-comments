@@ -44,6 +44,33 @@
     margin: 0 0 5px 0;
 }
 
+/* collapse/expand feature */
+.collapsed-content {
+    display: none;
+}
+
+.collapsed-content .comment-author-name {
+    padding-left: 22px;
+}
+
+.comment.collapsed .comment-content > * {
+    display: none;
+}
+
+.comment.collapsed .comment-content .collapsed-content {
+    display: block;
+}
+
+.comment-collapse {
+    position: absolute;
+    left: 86px;
+}
+
+.comment-expand {
+    position: absolute;
+    left: 16px;
+}
+
 /* Apply on 2nd level comments list */
 .comments-list .children {
     padding-left: 45px;

@@ -10,8 +10,20 @@ use yii2mod\editable\Editable;
 ?>
 <li class="comment" id="comment-<?php echo $model->id; ?>">
     <div class="comment-content" data-comment-content-id="<?php echo $model->id; ?>">
+        <div class="collapsed-content">
+            <div class="comment-expand">
+                <?php echo Html::a('<span class="glyphicon glyphicon-plus"></span>', '#', ['data' => ['action' => 'expand', 'comment-id' => $model->id]]); ?>
+            </div>
+            <div class="comment-author-name">
+                <span><?php echo $model->getAuthorName(); ?></span>
+                <?php echo Html::a($model->getPostedDate(), $model->getAnchorUrl(), ['class' => 'comment-date']); ?>
+            </div>
+        </div>
         <div class="comment-author-avatar">
             <?php echo Html::img($model->getAvatar(), ['alt' => $model->getAuthorName()]); ?>
+        </div>
+        <div class="comment-collapse">
+            <?php echo Html::a('<span class="glyphicon glyphicon-minus"></span>', '#', ['data' => ['action' => 'collapse', 'comment-id' => $model->id]]); ?>
         </div>
         <div class="comment-details">
             <div class="comment-action-buttons">
